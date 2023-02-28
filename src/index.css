@@ -10,6 +10,8 @@ body {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -19,11 +21,17 @@ body {
 }
 
 .header {
+  display: flex;
   background-color: #eee;
   padding: 40px;
 }
 
+.header__text_container {
+  width: 37%;
+}
+
 .header__title {
+  margin-bottom: 24px;
   font-size: 48px;
   line-height: 108%;
   letter-spacing: -1px;
@@ -32,6 +40,7 @@ body {
 }
 
 .header__title_description {
+  margin-bottom: 128px;
   color: #1b191c;
 }
 
@@ -55,11 +64,14 @@ body {
 }
 
 .main__description {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 36px;
+  margin-bottom: 120px;
 }
 
 .main__description_title {
+  margin-bottom: 40px;
   font-size: 48px;
   line-height: 108%;
   letter-spacing: -1px;
@@ -67,20 +79,43 @@ body {
   color: #f5f6f7;
 }
 
+.main__image {
+  background-image: url('../public/Illustration.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .main__technical_title {
+  margin-bottom: 40px;
   font-weight: 300;
   font-size: 24px;
 
   color: #f5f6f7;
 }
 
-.technical__buttons_list,
-.technical__list {
-  list-style-type: none;
+.technical__buttons_list {
   display: flex;
-  margin: 0;
+  list-style-type: none;
   margin-bottom: 32px;
-  padding: 0;
+  gap: 16px;
+}
+
+.technical__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 48px;
+  list-style-type: none;
+  margin-bottom: 32px;
+}
+
+.technical__item {
+  display: flex;
+  padding: 12px 0px;
+  border-bottom: 1px solid rgba(207, 211, 214, 0.1);
+}
+
+.technical__item_name {
+  width: 250px;
 }
 
 .technical__button {
@@ -91,7 +126,27 @@ body {
   line-height: 133%;
   letter-spacing: -0.4px;
 
+  transition: all 0.3s;
   border: none;
   background-color: transparent;
+  color: #cfd3d6;
+
+  opacity: 0.4;
+}
+
+.technical__button:hover {
+  border-bottom: 1px solid #eee;
   color: #f5f6f7;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: 1px solid #eee;
+  color: #f5f6f7;
+  opacity: 1;
+}
+
+.active:hover {
+  cursor: default;
 }
