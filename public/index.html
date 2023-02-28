@@ -7,9 +7,103 @@
     <meta name="theme-color" content="#000000" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Browser Audio Player</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="container">
+      <header class="header">
+        <h1 class="header__title">
+          Play any audio sources directly in the browser!
+        </h1>
+        <div id="root"></div>
+        <p class="header__title_description">
+          Without any restrictions for free
+        </p>
+        <div class="header__link_wrapper">
+          <span>By uploading the audio file, you agree to our</span>
+          <a class="header__link href="http://">Terms of Service.</a>
+        </div>
+      </header>
+      <main class="main">
+        <section class="main__description">
+          <div class="main__description_wrapper">
+            <h2 class="main__description_title">How It Works</h2>
+            <p class="main__description_text">
+              Lorem Ipsum is a "fish" text often used in print and web design.
+              Lorem Ipsum has been the standard "fish" for Latin texts since the
+              early 16th century. At that time, an unnamed printer created a
+              large collection of font sizes and shapes, using Lorem Ipsum for
+              print samples.
+            </p>
+          </div>
+          <img src="./Illustration.png" alt="The scheme of the player." />
+        </section>
+        <section class="main__technical">
+          <h3 class="main__technical_title">Technical requirements</h3>
+          <div class="main__technical_wrapper">
+            <ul class="technical__buttons_list">
+              <li class="technical__buttons_item">
+                <button class="technical__button">Own server</button>
+              </li>
+              <li class="technical__buttons_item">
+                <button class="technical__button">Amazon Instance</button>
+              </li>
+            </ul>
+
+            <ul class="technical__list">
+              <li class="technical__item">
+                <span>OS + apps</span>
+                <span>Unix/OSX + docker + nvidia-docker</span>
+              </li>
+              <li class="technical__item">
+                <span>CPU</span>
+                <span>4 cores or more (e.g. intel core i5)</span>
+              </li>
+              <li class="technical__item">
+                <span>Memory</span>
+                <span>16 GB RAM</span>
+              </li>
+              <li class="technical__item">
+                <span>Free space</span>
+                <span>100 GB of free space</span>
+              </li>
+              <li class="technical__item">
+                <span>Graphics hardware</span>
+                <span>GPU: NVidia only 2Gb+</span>
+              </li>
+            </ul>
+
+            <ul class="technical__list">
+              <li class="technical__item">
+                <span>Instance</span>
+                <span>g4dn.xlarge</span>
+              </li>
+              <li class="technical__item">
+                <span>GPU</span>
+                <span>1</span>
+              </li>
+              <li class="technical__item">
+                <span>vCPUs</span>
+                <span>4</span>
+              </li>
+              <li class="technical__item">
+                <span>Memory</span>
+                <span>16 GB RAM</span>
+              </li>
+              <li class="technical__item">
+                <span>Storage</span>
+                <span>125 GB</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
