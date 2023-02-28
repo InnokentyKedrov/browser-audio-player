@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  font-weight: 400;
+  color: #1b191c;
+  margin-bottom: 20px;
+}
+
+.form__input_wrapper {
+  display: flex;
+}
+
+.form__input {
+  font-size: 24px;
+  line-height: 133%;
+  letter-spacing: -0.4px;
+  padding: 32px 16px;
+  border: none;
+  color: #a4a3a4;
+}
+
+.form__button {
+  padding: 13px 12px;
+  width: 96px;
+  height: 96px;
+
+  background-image: url('../../../public/arrow.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #f8d231;
+  border: none;
+}
