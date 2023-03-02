@@ -3,7 +3,7 @@
 .progress__range {
   --range-progress: 0;
 
-  -webkit-appearance: none;
+  appearance: none;
   position: relative;
   background-color: #adacad;
   width: 100%;
@@ -77,7 +77,7 @@ input[type='range']::-moz-range-progress {
 /* volume range */
 
 .volume {
-  -webkit-appearance: none;
+  appearance: none;
   position: relative;
   width: 252px;
   height: 2px;
