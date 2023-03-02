@@ -1,4 +1,9 @@
 .controls__button {
   border: none;
   background-color: transparent;
+  margin-bottom: 45px;
+}
+
+.controls__button:hover {
+  cursor: pointer;
 }

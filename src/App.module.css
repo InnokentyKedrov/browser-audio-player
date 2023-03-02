@@ -1,0 +1,38 @@
+.player__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 0 112px;
+}
+
+.back {
+  text-align: left;
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 24px;
+  line-height: 133%;
+
+  letter-spacing: -0.4px;
+  border: none;
+  color: #1b191c;
+  margin-bottom: 20px;
+  transition: color 0.4s;
+}
+
+.back:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 10px;
+}
+
+@media (max-width: 1080px) {
+  .player__wrapper {
+    padding: 0 0 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .player__wrapper {
+    padding: 0;
+    margin-bottom: 40px;
+  }
+}
