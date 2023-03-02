@@ -1,42 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactComponent as Play } from '../../assets/play.svg';
 import { ReactComponent as Pause } from '../../assets/pause.svg';
 import style from './Controls.module.css';
 
-const Controls = ({ audioRef }) => {
+const Controls = ({ audio, progress, duration, setTimeProgress }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const playAnimation = useRef();
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const repeat = useCallback(() => {
+    const currentTime = audio.current.currentTime;
+    setTimeProgress(currentTime);
+    progress.current.value = currentTime;
+    progress.current.style.setProperty(
+      '--range-progress',
+      `${(progress.current.value / duration) * 100}%`
+    );
+
+    playAnimation.current = requestAnimationFrame(repeat);
+  }, [audio, duration, progress, setTimeProgress]);
+
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play();
+      audio.current.play();
     } else {
-      audioRef.current.pause();
+      audio.current.pause();
     }
-  }, [isPlaying, audioRef]);
+    playAnimation.current = requestAnimationFrame(repeat);
+  }, [isPlaying, audio, repeat]);
 
   return (
     <div className={style.controls__wrapper}>
       <div className={style.controls}>
-        {/* <button>
-          <IoPlaySkipBackSharp />
-        </button>
-        <button>
-          <IoPlayBackSharp />
-        </button> */}
-
         <button className={style.controls__button} onClick={togglePlayPause}>
           {isPlaying ? <Pause /> : <Play />}
         </button>
-        {/* <button>
-          <IoPlayForwardSharp />
-        </button>
-        <button>
-          <IoPlaySkipForwardSharp />
-        </button> */}
       </div>
     </div>
   );

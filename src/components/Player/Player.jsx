@@ -5,24 +5,16 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import style from './Player.module.css';
 
 const Player = ({ track }) => {
-  const audioRef = useRef();
-
-  // useEffect(() => {
-  console.log(audioRef);
-  //   if (isPlaying) {
-  //     audioRef.current.play();
-  //   } else {
-  //     audioRef.current.pause();
-  //   }
-  // }, [isPlaying]);
+  const [timeProgress, setTimeProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audio = useRef();
+  const progress = useRef();
 
   return (
     <div className={style.player}>
-      <div className="inner">
-        <Controls audioRef={audioRef} />
-        <DisplayTrack track={track} audioRef={audioRef} />
-        <ProgressBar />
-      </div>
+      <Controls {...{ audio, progress, duration, setTimeProgress }} />
+      <DisplayTrack {...{ track, audio, setDuration, progress }} />
+      <ProgressBar {...{ progress, audio, timeProgress }} />
     </div>
   );
 };

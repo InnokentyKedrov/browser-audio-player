@@ -21,16 +21,23 @@ body {
 }
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'title root'
+    'description root'
+    'link root';
+  grid-template-columns: 37% 1fr;
   background-color: #eee;
   padding: 40px;
 }
 
-.header__text_container {
-  width: 37%;
+#root {
+  grid-area: root;
+  display: flex;
 }
 
 .header__title {
+  grid-area: title;
   margin-bottom: 24px;
   font-size: 48px;
   line-height: 108%;
@@ -40,11 +47,13 @@ body {
 }
 
 .header__title_description {
+  grid-area: description;
   margin-bottom: 128px;
   color: #1b191c;
 }
 
 .header__link_wrapper {
+  grid-area: link;
   font-weight: 300;
   font-size: 12px;
   letter-spacing: -0.3px;
@@ -80,6 +89,7 @@ body {
 }
 
 .main__image {
+  height: 248px;
   background-image: url('../public/Illustration.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -98,6 +108,7 @@ body {
   list-style-type: none;
   margin-bottom: 32px;
   gap: 16px;
+  align-items: end;
 }
 
 .technical__list {
@@ -149,4 +160,90 @@ body {
 
 .active:hover {
   cursor: default;
+}
+
+@media (max-width: 950px) {
+  .header__title {
+    font-size: 36px;
+    line-height: 110%;
+
+    letter-spacing: -0.4px;
+  }
+
+  .main {
+    padding: 40px;
+  }
+
+  .main__description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main__description_title {
+    font-size: 36px;
+    line-height: 110%;
+
+    letter-spacing: -0.4px;
+  }
+
+  .technical__item_name {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  #root {
+    width: 100%;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__title {
+    margin-bottom: 40px;
+  }
+
+  .header__title_description {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 650px) {
+  .technical__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .technical__item {
+    flex-direction: column;
+  }
+
+  .technical__item:nth-child(2) {
+    order: 1;
+  }
+
+  .technical__item:nth-child(4) {
+    order: 2;
+  }
+
+  .technical__item_name {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    border: none;
+  }
+
+  .header {
+    padding: 20px 12px;
+  }
+
+  .main {
+    padding: 40px 12px;
+  }
 }

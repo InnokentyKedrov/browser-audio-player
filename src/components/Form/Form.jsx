@@ -5,7 +5,6 @@ const Form = ({ setTrack }) => {
   const inputRef = useRef(null);
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('event: ', inputRef.current.value);
     setTrack(inputRef.current.value);
   };
 

@@ -1,9 +1,13 @@
-import style from './DisplayTrack.module.css';
+const DisplayTrack = ({ track, audio, setDuration, progress }) => {
+  const onLoadedMetadata = () => {
+    const seconds = audio.current.duration;
+    setDuration(seconds);
+    progress.current.max = seconds;
+  };
 
-const DisplayTrack = ({ track, audioRef }) => {
   return (
     <div>
-      <audio src={track} audioRef={audioRef} />
+      <audio src={track} ref={audio} onLoadedMetadata={onLoadedMetadata} />
     </div>
   );
 };
