@@ -3,3 +3,21 @@
   padding: 20px;
   background-color: #cfd3d6;
 }
+
+.player::-webkit-media-controls-panel {
+  -webkit-justify-content: center;
+  height: 25px;
+}
+
+/* Removes the timeline */
+.player::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+/* Removes the time stamp */
+.player::-webkit-media-controls-current-time-display {
+  display: none;
+}
+.player::-webkit-media-controls-time-remaining-display {
+  display: none;
+}

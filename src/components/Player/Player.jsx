@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import Controls from '../Controls/Controls';
+import DisplayTrack from '../DisplayTrack/DisplayTrack';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import style from './Player.module.css';
 
-const Player = () => {
-  // const [isPlaying, setIsPlaying] = useState(false);
-  // const audioRef = useRef(null);
+const Player = ({ track }) => {
+  const audioRef = useRef();
 
   // useEffect(() => {
-  //   console.log(audioRef)
+  console.log(audioRef);
   //   if (isPlaying) {
   //     audioRef.current.play();
   //   } else {
@@ -15,12 +17,14 @@ const Player = () => {
   // }, [isPlaying]);
 
   return (
-      <div className={style.player}>
-        <audio controls>
-          <source src="./128.mp3" />
-        </audio>
+    <div className={style.player}>
+      <div className="inner">
+        <Controls audioRef={audioRef} />
+        <DisplayTrack track={track} audioRef={audioRef} />
+        <ProgressBar />
       </div>
-  )
-}
+    </div>
+  );
+};
 
 export default Player;

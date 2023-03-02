@@ -1,20 +1,31 @@
+import { useRef } from 'react';
 import style from './Form.module.css';
 
-const Form = () => {
+const Form = ({ setTrack }) => {
+  const inputRef = useRef(null);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log('event: ', inputRef.current.value);
+    setTrack(inputRef.current.value);
+  };
 
-  const onSubmit = (e) => {
-    console.log(e);
-  }
-  
   return (
-    <form className={style.form}>
-      <label className={style.form__label} htmlFor="">Insert the link</label>
+    <form className={style.form} onSubmit={onSubmit}>
+      <label className={style.form__label} htmlFor="">
+        Insert the link
+      </label>
       <div className={style.form__input_wrapper}>
-        <input className={style.form__input} type="text" placeholder="http://" />
-        <input className={style.form__button} type="button" value="" onSubmit={onSubmit} />
+        <input
+          className={style.form__input}
+          ref={inputRef}
+          type="text"
+          placeholder="http://"
+          required
+        />
+        <button className={style.form__button} type="submit" />
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default Form;
