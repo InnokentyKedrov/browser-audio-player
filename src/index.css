@@ -94,7 +94,7 @@ body {
 
 .main__image {
   height: 248px;
-  background-image: url('../public/Illustration.png');
+  background-image: url('./assets/illustration.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
