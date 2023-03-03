@@ -5,7 +5,8 @@
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier"
   ],
   "env": {
     "browser": true,
@@ -19,11 +20,9 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-		"sourceType": "module"
+    "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint", "react", "prettier", "react-hooks"
-  ],
+  "plugins": ["@typescript-eslint", "react", "prettier", "react-hooks"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -42,10 +41,10 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   },
-	"settings": {
-		"react": {
-			"pragma": "React",
-			"version": "detect"
-		}
-	}
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
 }

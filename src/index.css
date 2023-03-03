@@ -1,10 +1,11 @@
 body {
-  font-family: 'Space Grotesk', 'Arial', sans-serif;
-  font-style: normal;
-  font-weight: 300;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
   line-height: 133%;
   letter-spacing: -0.4px;
+
   background-color: #e5e5e5;
 }
 
@@ -27,23 +28,26 @@ body {
     'description root'
     'link root';
   grid-template-columns: 37% 1fr;
-  background-color: #eee;
+
   padding: 40px;
+
+  background-color: #eee;
 }
 
 #root {
-  grid-area: root;
   display: flex;
+  grid-area: root;
 }
 
 .header__title {
   grid-area: title;
+
   margin-bottom: 24px;
+
   font-size: 48px;
   line-height: 108%;
+  color: #000;
   letter-spacing: -1px;
-
-  color: #000000;
 }
 
 .header__title_description {
@@ -54,22 +58,22 @@ body {
 
 .header__link_wrapper {
   grid-area: link;
-  font-weight: 300;
-  font-size: 12px;
-  letter-spacing: -0.3px;
 
+  font-size: 12px;
+  font-weight: 300;
   color: #1b191c;
+  letter-spacing: -0.3px;
 }
 
 .header__link {
-  text-decoration: none;
   color: #1b191c;
+  text-decoration: none;
 }
 
 .main {
   padding: 120px 40px;
-  background-color: #000;
   color: #eee;
+  background-color: #000;
 }
 
 .main__description {
@@ -81,11 +85,11 @@ body {
 
 .main__description_title {
   margin-bottom: 40px;
+
   font-size: 48px;
   line-height: 108%;
-  letter-spacing: -1px;
-
   color: #f5f6f7;
+  letter-spacing: -1px;
 }
 
 .main__image {
@@ -95,67 +99,43 @@ body {
   background-size: contain;
 }
 
-.main__technical_title {
-  margin-bottom: 40px;
-  font-weight: 300;
-  font-size: 24px;
-
-  color: #f5f6f7;
+.technical__input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
 }
 
-.technical__buttons_list {
-  display: flex;
-  list-style-type: none;
-  margin-bottom: 32px;
-  gap: 16px;
-  align-items: end;
+.main__technical_title {
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 300;
+  color: #f5f6f7;
 }
 
 .technical__list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 48px;
-  list-style-type: none;
+
   margin-bottom: 32px;
+
+  list-style-type: none;
 }
 
 .technical__item {
   display: flex;
-  padding: 12px 0px;
-  border-bottom: 1px solid rgba(207, 211, 214, 0.1);
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(207 211 214 / 10%);
 }
 
 .technical__item_name {
   width: 250px;
 }
 
-.technical__button {
-  font-family: 'Space Grotesk', 'Arial', sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 24px;
-  line-height: 133%;
-  letter-spacing: -0.4px;
-
-  transition: all 0.3s;
-  border: none;
-  background-color: transparent;
-  color: #cfd3d6;
-
-  opacity: 0.4;
-}
-
-.technical__button:hover {
-  border-bottom: 1px solid #eee;
-  color: #f5f6f7;
-  opacity: 1;
-  cursor: pointer;
-}
-
 .active {
-  border-bottom: 1px solid #eee;
   color: #f5f6f7;
   opacity: 1;
+  border-bottom: 1px solid #eee;
 }
 
 .active:hover {
@@ -166,7 +146,6 @@ body {
   .header__title {
     font-size: 36px;
     line-height: 110%;
-
     letter-spacing: -0.4px;
   }
 
@@ -182,13 +161,74 @@ body {
   .main__description_title {
     font-size: 36px;
     line-height: 110%;
-
     letter-spacing: -0.4px;
   }
 
   .technical__item_name {
     width: 150px;
   }
+}
+
+/* 88888888888888888888888888888888888888888 */
+
+.technical__list_slider {
+  display: flex;
+  width: 200%;
+}
+
+.technical__list {
+  width: 50%;
+  transition: all 0.6s ease;
+  visibility: hidden;
+}
+
+.technical__buttons_list {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.technical__buttons_item {
+  font-weight: 300;
+  color: #cfd3d6;
+
+  opacity: 0.4;
+  background-color: transparent;
+
+  transition: all 0.3s;
+}
+
+.technical__buttons_item:hover {
+  cursor: pointer;
+  color: #f5f6f7;
+  opacity: 1;
+  border-bottom: 1px solid #eee;
+}
+
+#point1:checked ~ .technical__list_slider .technical__list_1 {
+  visibility: visible;
+}
+
+#point1:checked ~ .technical__buttons_list .technical__buttons_item_1 {
+  color: #f5f6f7;
+  opacity: 1;
+  border-bottom: 1px solid #eee;
+}
+
+#point2:checked ~ .technical__list_slider .technical__list_1 {
+  margin-left: -50%;
+  visibility: hidden;
+}
+
+#point2:checked ~ .technical__list_slider .technical__list_2 {
+  visibility: visible;
+}
+
+#point2:checked ~ .technical__buttons_list .technical__buttons_item_2 {
+  color: #f5f6f7;
+  opacity: 1;
+  border-bottom: 1px solid #eee;
 }
 
 @media (max-width: 768px) {

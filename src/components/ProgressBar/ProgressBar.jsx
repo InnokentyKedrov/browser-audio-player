@@ -30,8 +30,8 @@ const ProgressBar = ({ progress, audio, timeProgress }) => {
       <div className={style.progress}>
         <input
           className={style.progress__range}
-          type="range"
-          defaultValue="0"
+          type='range'
+          defaultValue='0'
           onChange={handleProgressChange}
           ref={progress}
         />
@@ -40,7 +40,7 @@ const ProgressBar = ({ progress, audio, timeProgress }) => {
         <span className={style.progress__time}>{formatTime(timeProgress)}</span>
         <input
           className={style.volume}
-          type="range"
+          type='range'
           min={0}
           max={100}
           value={volume}
