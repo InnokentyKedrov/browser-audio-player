@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import style from './App.module.css';
 import Form from './components/Form/Form';
 import Player from './components/Player/Player';

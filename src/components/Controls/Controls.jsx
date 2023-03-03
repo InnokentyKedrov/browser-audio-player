@@ -15,10 +15,7 @@ const Controls = ({ audio, progress, duration, setTimeProgress }) => {
     const currentTime = audio.current.currentTime;
     setTimeProgress(currentTime);
     progress.current.value = currentTime;
-    progress.current.style.setProperty(
-      '--range-progress',
-      `${(progress.current.value / duration) * 100}%`
-    );
+    progress.current.style.setProperty('--range-progress', `${(progress.current.value / duration) * 100}%`);
 
     playAnimation.current = requestAnimationFrame(repeat);
   }, [audio, duration, progress, setTimeProgress]);

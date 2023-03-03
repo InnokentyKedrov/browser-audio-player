@@ -1,7 +1,7 @@
 .controls__button {
-  border: none;
-  background-color: transparent;
   margin-bottom: 45px;
+  background-color: transparent;
+  border: none;
 }
 
 .controls__button:hover {

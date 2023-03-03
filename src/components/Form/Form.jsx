@@ -10,18 +10,12 @@ const Form = ({ setTrack }) => {
 
   return (
     <form className={style.form} onSubmit={onSubmit}>
-      <label className={style.form__label} htmlFor="">
+      <label className={style.form__label} htmlFor=''>
         Insert the link
       </label>
       <div className={style.form__input_wrapper}>
-        <input
-          className={style.form__input}
-          ref={inputRef}
-          type="text"
-          placeholder="http://"
-          required
-        />
-        <button className={style.form__button} type="submit" />
+        <input className={style.form__input} ref={inputRef} type='text' placeholder='http://' />
+        <button className={style.form__button} type='submit' />
       </div>
     </form>
   );

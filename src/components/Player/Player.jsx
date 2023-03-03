@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Controls from '../Controls/Controls';
 import DisplayTrack from '../DisplayTrack/DisplayTrack';
 import ProgressBar from '../ProgressBar/ProgressBar';

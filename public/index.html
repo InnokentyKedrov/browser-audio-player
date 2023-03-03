@@ -18,13 +18,9 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1 class="header__title">
-          Play any audio sources directly in the browser!
-        </h1>
+        <h1 class="header__title">Play any audio sources directly in the browser!</h1>
         <div id="root"></div>
-        <p class="header__title_description">
-          Without any restrictions for free
-        </p>
+        <p class="header__title_description">Without any restrictions for free</p>
         <div class="header__link_wrapper">
           <span>By uploading the audio file, you agree to our</span>
           <a class="header__link" href="#">Terms of Service.</a>
@@ -35,28 +31,86 @@
           <div class="main__description_wrapper">
             <h2 class="main__description_title">How It Works</h2>
             <p class="main__description_text">
-              Lorem Ipsum is a "fish" text often used in print and web design.
-              Lorem Ipsum has been the standard "fish" for Latin texts since the
-              early 16th century. At that time, an unnamed printer created a
-              large collection of font sizes and shapes, using Lorem Ipsum for
-              print samples.
+              Lorem Ipsum is a "fish" text often used in print and web design. Lorem Ipsum has been
+              the standard "fish" for Latin texts since the early 16th century. At that time, an
+              unnamed printer created a large collection of font sizes and shapes, using Lorem Ipsum
+              for print samples.
             </p>
           </div>
           <div class="main__image"></div>
         </section>
+
         <section class="main__technical">
+          <input class="technical__input" type="radio" name="slides" id="point1" checked />
+          <input class="technical__input" type="radio" name="slides" id="point2" />
+
+          <div class="technical__buttons_list">
+            <label class="technical__buttons_item technical__buttons_item_1" for="point1"
+              ><span class="technical__button technical__button_1">Own&nbsp;server</span></label
+            >
+            <label class="technical__buttons_item technical__buttons_item_2" for="point2"
+              ><span class="technical__button technical__button_2">Amazon Instance</span></label
+            >
+          </div>
+
+          <div class="technical__list_slider">
+            <ul class="technical__list technical__list_1">
+              <li class="technical__item">
+                <span class="technical__item_name">OS + apps</span>
+                <span>Unix/OSX + docker + nvidia-docker</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">Free space</span>
+                <span>100 GB of free space</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">CPU</span>
+                <span>4 cores or more (e.g. intel core i5)</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">Graphics hardware</span>
+                <span>GPU: NVidia only 2Gb+</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">Memory</span>
+                <span>16 GB RAM</span>
+              </li>
+            </ul>
+
+            <ul class="technical__list technical__list_2">
+              <li class="technical__item">
+                <span class="technical__item_name">Instance</span>
+                <span>g4dn.xlarge</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">GPU</span>
+                <span>1</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">vCPUs</span>
+                <span>4</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">Memory</span>
+                <span>16 GB RAM</span>
+              </li>
+              <li class="technical__item">
+                <span class="technical__item_name">Storage</span>
+                <span>125 GB</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- <section class="main__technical">
           <h3 class="main__technical_title">Technical requirements</h3>
           <div class="main__technical_wrapper">
             <ul class="technical__buttons_list">
               <li class="technical__buttons_item">
-                <button class="technical__button active" type="button">
-                  Own&nbsp;server
-                </button>
+                <button class="technical__button active" type="button">Own&nbsp;server</button>
               </li>
               <li class="technical__buttons_item">
-                <button class="technical__button" type="button">
-                  Amazon Instance
-                </button>
+                <button class="technical__button" type="button">Amazon Instance</button>
               </li>
             </ul>
 
@@ -83,7 +137,7 @@
               </li>
             </ul>
 
-            <!-- <ul class="technical__list">
+            <ul class="technical__list">
               <li class="technical__item">
                 <span class="technical__item_name">Instance</span>
                 <span>g4dn.xlarge</span>
@@ -104,9 +158,9 @@
                 <span class="technical__item_name">Storage</span>
                 <span>125 GB</span>
               </li>
-            </ul> -->
+            </ul>
           </div>
-        </section>
+        </section> -->
       </main>
     </div>
   </body>
