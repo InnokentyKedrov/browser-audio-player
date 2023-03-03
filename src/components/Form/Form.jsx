@@ -14,7 +14,13 @@ const Form = ({ setTrack }) => {
         Insert the link
       </label>
       <div className={style.form__input_wrapper}>
-        <input className={style.form__input} ref={inputRef} type='text' placeholder='http://' />
+        <input
+          className={style.form__input}
+          ref={inputRef}
+          type='text'
+          placeholder='https://'
+          name='input'
+        />
         <button className={style.form__button} type='submit' />
       </div>
     </form>
