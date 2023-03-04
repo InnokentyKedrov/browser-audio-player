@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { ReactComponent as Play } from '../../assets/play.svg';
 import { ReactComponent as Pause } from '../../assets/pause.svg';
 import style from './Controls.module.css';
 
-const Controls = ({ audio, progress, duration, setTimeProgress }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const Controls = ({ audio, progress, duration, setTimeProgress, isPlaying, setIsPlaying }) => {
   const playAnimation = useRef();
 
   const togglePlayPause = () => {
@@ -12,12 +11,17 @@ const Controls = ({ audio, progress, duration, setTimeProgress }) => {
   };
 
   const repeat = useCallback(() => {
-    const currentTime = audio.current.currentTime;
-    setTimeProgress(currentTime);
-    progress.current.value = currentTime;
-    progress.current.style.setProperty('--range-progress', `${(progress.current.value / duration) * 100}%`);
+    if (audio.current) {
+      const currentTime = audio.current.currentTime;
+      setTimeProgress(currentTime);
+      progress.current.value = currentTime;
+      progress.current.style.setProperty(
+        '--range-progress',
+        `${(progress.current.value / duration) * 100}%`,
+      );
 
-    playAnimation.current = requestAnimationFrame(repeat);
+      playAnimation.current = requestAnimationFrame(repeat);
+    }
   }, [audio, duration, progress, setTimeProgress]);
 
   useEffect(() => {

@@ -91,6 +91,7 @@
 
 .volume {
   cursor: pointer;
+  margin-top: 7px;
 
   position: relative;
 
@@ -101,6 +102,7 @@
 }
 
 .volume::-moz-range-track {
+  margin-top: 7px;
   cursor: pointer;
   position: relative;
   width: 252px;

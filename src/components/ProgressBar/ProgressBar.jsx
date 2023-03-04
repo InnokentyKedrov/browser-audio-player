@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import style from './ProgressBar.module.css';
 
-const ProgressBar = ({ progress, audio, timeProgress }) => {
-  const [volume, setVolume] = useState(60);
-
+const ProgressBar = ({ progress, audio, timeProgress, volume, setVolume }) => {
   const handleProgressChange = () => {
     audio.current.currentTime = progress.current.value;
   };
