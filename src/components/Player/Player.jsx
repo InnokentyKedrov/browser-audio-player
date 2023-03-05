@@ -19,14 +19,6 @@ const Player = ({ track }) => {
     progress.current.max = seconds;
   };
 
-  useEffect(() => {
-    const myAudio = audio.current;
-
-    myAudio.addEventListener('canplaythrough', () => {
-      setIsLoad(false);
-    });
-  });
-
   const keyboardListener = () => {
     const myAudio = audio.current;
     //   ' Use Keyboard:  Space to Play/Pause | Enter to Stop | Arrows to Change Time and Volume'
@@ -64,13 +56,24 @@ const Player = ({ track }) => {
     });
   };
 
+  useEffect(() => {
+    const myAudio = audio.current;
+
+    myAudio.addEventListener('canplaythrough', () => {
+      setIsLoad(false);
+    });
+
+    myAudio.addEventListener('ended', () => {
+      myAudio.load();
+      setIsPlaying(false);
+    });
+  });
+
   return (
     <div className={style.player} onKeyDown={keyboardListener}>
       {isLoad && <Loader />}
       <Controls {...{ audio, progress, duration, setTimeProgress, isPlaying, setIsPlaying }} />
-      <div>
-        <audio src={track} ref={audio} onLoadedMetadata={onLoadedMetadata} />
-      </div>
+      <audio src={track} ref={audio} onLoadedMetadata={onLoadedMetadata} />
       <ProgressBar {...{ progress, audio, timeProgress, volume, setVolume }} />
     </div>
   );
