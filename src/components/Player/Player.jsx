@@ -19,11 +19,11 @@ const Player = ({ track }) => {
     progress.current.max = seconds;
   };
 
-  const keyboardListener = () => {
+  useEffect(() => {
     const myAudio = audio.current;
     //   ' Use Keyboard:  Space to Play/Pause | Enter to Stop | Arrows to Change Time and Volume'
 
-    document.addEventListener('keydown', (e) => {
+    const listener = (e) => {
       e.preventDefault();
 
       switch (e.code) {
@@ -35,13 +35,10 @@ const Player = ({ track }) => {
           setIsPlaying(false);
           break;
         case 'ArrowRight':
-          console.log('myAudio.currentTime first: ', myAudio.currentTime);
-          myAudio.currentTime += 0.5;
-          console.log('myAudio.currentTime second: ', myAudio.currentTime);
+          myAudio.currentTime += 5;
           break;
         case 'ArrowLeft':
-          myAudio.currentTime -= 0.5;
-          console.log('myAudio.currentTime: ', myAudio.currentTime);
+          myAudio.currentTime -= 5;
           break;
         case 'ArrowUp':
           if (volume < 100) setVolume(volume + 5);
@@ -51,26 +48,33 @@ const Player = ({ track }) => {
           break;
         default:
           return;
-          break;
       }
-    });
-  };
+    };
+    document.addEventListener('keydown', listener);
+    return function cleanup() {
+      document.removeEventListener('keydown', listener);
+    };
+  }, [isPlaying, volume]);
 
   useEffect(() => {
     const myAudio = audio.current;
 
-    myAudio.addEventListener('canplaythrough', () => {
+    myAudio.addEventListener('canplay', () => {
       setIsLoad(false);
+    });
+
+    myAudio.addEventListener('waiting', () => {
+      setIsLoad(true);
     });
 
     myAudio.addEventListener('ended', () => {
       myAudio.load();
       setIsPlaying(false);
     });
-  });
+  }, []);
 
   return (
-    <div className={style.player} onKeyDown={keyboardListener}>
+    <div className={style.player}>
       {isLoad && <Loader />}
       <Controls {...{ audio, progress, duration, setTimeProgress, isPlaying, setIsPlaying }} />
       <audio src={track} ref={audio} onLoadedMetadata={onLoadedMetadata} />

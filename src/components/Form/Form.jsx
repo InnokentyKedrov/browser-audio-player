@@ -9,68 +9,63 @@ const Form = ({ setTrack }) => {
   const [isListFocus, setIsListFocus] = useState(false);
   const [linkArray, setLinkArray] = useState(JSON.parse(localStorage.getItem('linkArray')) || []);
   const inputRef = useRef(null);
+  const fakeAudio = useRef();
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    isValidAudioUrl(inputRef.current.value).then((result) => console.log('result', result));
-    if (!inputRef.current.value) setError('This field is required.');
-    else if (
-      !/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
-        inputRef.current.value,
-      )
-    ) {
-      setError('This expression is not a valid link.');
-    } else {
-      if (!linkArray.includes(inputRef.current.value)) {
-        setLinkArray([...linkArray, inputRef.current.value]);
-        localStorage.setItem('linkArray', JSON.stringify([...linkArray, inputRef.current.value]));
-      }
-      setTrack(inputRef.current.value);
-    }
-    // checkUrl(inputRef.current.value);
-    // check(inputRef.current.value);
-
-    // setTrack(inputRef.current.value);
-    // if (!duration) setError('This link is not a link to audio.');
+    const url = inputRef.current.value;
+    checkUrl(url);
   };
 
-  async function isValidAudioUrl(urlToCheck) {
-    try {
-      const res = await fetch(urlToCheck, { method: 'HEAD' });
-      console.log('res: ', res);
-      return res.ok && res.headers.get('content-type').startsWith('audio');
-    } catch (err) {
-      return console.log(err.message);
+  const checkUrl = (url) => {
+    let error;
+
+    const check = () => {
+      fakeAudio.current.src = url;
+      fakeAudio.current.addEventListener('error', (e) => {
+        switch (e.target.error.code) {
+          case e.target.error.MEDIA_ERR_ABORTED:
+            error = 'You aborted the media playback.';
+            break;
+          case e.target.error.MEDIA_ERR_NETWORK:
+            error = 'A network error caused the media download to fail.';
+            break;
+          case e.target.error.MEDIA_ERR_DECODE:
+            error =
+              'The media playback was aborted due to a corruption problem or because the media used features your browser did not support.';
+            break;
+          case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            error =
+              'The media could not be loaded, either because the server or network failed or because the format is not supported.';
+            break;
+          default:
+            error = 'An unknown media error occurred.';
+            break;
+        }
+        setError(error);
+      });
+    };
+
+    if (!url) setError('This field is required.');
+    else if (
+      !/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
+        url,
+      )
+    )
+      setError('This expression is not a valid link.');
+    else {
+      check();
+      setTimeout(() => {
+        if (!error) {
+          if (!linkArray.includes(url)) {
+            setLinkArray([...linkArray, url]);
+            localStorage.setItem('linkArray', JSON.stringify([...linkArray, url]));
+          }
+          setTrack(url);
+        }
+      }, 1000);
     }
-  }
-
-  // const checkUrl = (url) => {
-  //   let xhr = new XMLHttpRequest();
-
-  //   xhr.open({ method: 'HEAD', mode: 'no-cors' }, url, false);
-
-  //   try {
-  //     xhr.send();
-  //     if (xhr.status != 200) {
-  //       console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
-  //     } else {
-  //       console.log(xhr.response);
-  //     }
-  //   } catch (err) {
-  //     console.log('Запрос не удался');
-  //   }
-
-  //   let headers = xhr
-  //     .getAllResponseHeaders()
-  //     .split('\r\n')
-  //     .reduce((result, current) => {
-  //       let [name, value] = current.split(': ');
-  //       result[name] = value;
-  //       return result;
-  //     }, {});
-
-  //   console.log('headers["Content-Type"]: ', headers['content-type']);
-  // };
+  };
 
   useEffect(() => {
     if (isInputFocus || isListFocus) setIsFocus(true);
@@ -90,7 +85,10 @@ const Form = ({ setTrack }) => {
           type='text'
           placeholder='https://'
           onChange={() => setError('')}
-          onFocus={() => setIsInputFocus(true)}
+          onFocus={() => {
+            setIsInputFocus(true);
+            setError('');
+          }}
           onBlur={() => setIsInputFocus(false)}
           autoComplete='off'
         />
@@ -105,6 +103,7 @@ const Form = ({ setTrack }) => {
         )}
         <span className={style.form__error}>{error}</span>
       </div>
+      <audio ref={fakeAudio} />
     </form>
   );
 };
