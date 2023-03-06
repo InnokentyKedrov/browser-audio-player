@@ -21,6 +21,7 @@
 
 .form__input {
   flex-grow: 1;
+
   height: 96px;
   padding: 32px 16px;
 
@@ -34,11 +35,13 @@
 }
 
 .form__input_error {
+  padding-right: 40px;
   border: 0.5px solid #c6a827;
 }
 
 .form__button {
   position: relative;
+
   width: 96px;
   height: 96px;
 
@@ -50,12 +53,15 @@
 }
 
 .form__button_error::before {
-  position: absolute;
   content: '';
+
+  position: absolute;
   top: calc(50% - 12px);
-  left: -28px;
+  left: -40px;
+
   width: 24px;
   height: 24px;
+
   background-image: url('../../assets/attention.png');
   background-size: contain;
 }
@@ -66,15 +72,23 @@
 }
 
 .form__error {
-  bottom: -24px;
   position: absolute;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 133%;
+  bottom: -40px;
 
+  overflow: hidden;
+  display: -webkit-box;
+
+  width: calc(100% - 96px);
+  height: 32px;
+
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 133%;
+  color: #c6a827;
   letter-spacing: -0.3px;
 
-  color: #c6a827;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 @media (max-width: 1080px) {

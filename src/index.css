@@ -124,8 +124,8 @@ body {
   color: #cfd3d6;
 
   opacity: 0.4;
-  border-bottom: 1px solid transparent;
   background-color: transparent;
+  border-bottom: 1px solid transparent;
 
   transition: all 0.3s;
 }
