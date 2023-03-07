@@ -55,16 +55,15 @@ const Form = ({ setTrack }) => {
       setError('This expression is not a valid link.');
     else {
       check();
-      setTimeout(() => {
-        if (!error) {
-          if (!linkArray.includes(url)) {
-            setLinkArray([...linkArray, url]);
-            localStorage.setItem('linkArray', JSON.stringify([...linkArray, url]));
-          }
-          setTrack(url);
-        }
-      }, 1000);
     }
+
+    fakeAudio.current.addEventListener('loadedmetadata', () => {
+      if (!linkArray.includes(url)) {
+        setLinkArray([...linkArray, url]);
+        localStorage.setItem('linkArray', JSON.stringify([...linkArray, url]));
+      }
+      setTrack(url);
+    });
   };
 
   useEffect(() => {
