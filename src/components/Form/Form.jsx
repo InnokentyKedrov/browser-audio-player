@@ -13,8 +13,14 @@ const Form = ({ setTrack }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const url = inputRef.current.value;
-    checkUrl(url);
+    checkUrl(inputRef.current.value);
+  };
+
+  const onKeyDown = (event) => {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      event.target.blur();
+    }
   };
 
   const checkUrl = (url) => {
@@ -89,6 +95,7 @@ const Form = ({ setTrack }) => {
             setError('');
           }}
           onBlur={() => setIsInputFocus(false)}
+          onKeyUp={onKeyDown}
           autoComplete='off'
         />
         <button
