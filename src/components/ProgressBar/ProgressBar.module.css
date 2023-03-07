@@ -10,8 +10,9 @@
   height: 2px;
   margin-bottom: 45px;
 
-  appearance: none;
   background-color: #adacad;
+
+  appearance: none;
 }
 
 .progress__range::-moz-range-track {
@@ -42,6 +43,7 @@
 
 .progress__range::-moz-range-progress {
   height: 2px;
+
   background-color: #fff;
 }
 
@@ -54,10 +56,11 @@
   width: 16px;
   height: 12px;
 
-  appearance: none;
   background-color: #fff;
   border: none;
   border-radius: 6px;
+
+  appearance: none;
 }
 
 .progress__range::-moz-range-thumb {
@@ -120,9 +123,10 @@
   width: 16px;
   height: 12px;
 
-  appearance: none;
   background-color: #000;
   border: none;
+
+  appearance: none;
 }
 
 .volume::-moz-range-thumb {

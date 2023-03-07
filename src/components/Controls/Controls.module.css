@@ -1,5 +1,6 @@
 .controls__button {
   margin-bottom: 45px;
+
   background-color: transparent;
   border: none;
   outline: none;
@@ -9,6 +10,6 @@
   cursor: pointer;
 }
 
-controls__button:focus {
+.controls__button:focus {
   outline: none;
 }

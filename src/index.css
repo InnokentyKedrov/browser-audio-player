@@ -18,6 +18,7 @@ body {
 .container {
   max-width: 1440px;
   margin: 0 auto;
+
   border: 12px solid #000;
 }
 
@@ -52,7 +53,9 @@ body {
 
 .header__title_description {
   grid-area: description;
+
   margin-bottom: 128px;
+
   color: #1b191c;
 }
 
@@ -72,7 +75,9 @@ body {
 
 .main {
   padding: 120px 40px;
+
   color: #eee;
+
   background-color: #000;
 }
 
@@ -80,6 +85,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 36px;
+
   margin-bottom: 120px;
 }
 
@@ -94,6 +100,7 @@ body {
 
 .main__image {
   height: 248px;
+
   background-image: url('./assets/illustration.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -101,6 +108,7 @@ body {
 
 .main__technical_title {
   margin-bottom: 40px;
+
   font-size: 24px;
   font-weight: 300;
   color: #f5f6f7;
@@ -109,6 +117,7 @@ body {
 .technical__input {
   width: 0;
   height: 0;
+
   visibility: hidden;
 }
 
@@ -116,6 +125,7 @@ body {
   display: flex;
   gap: 16px;
   align-items: end;
+
   margin-bottom: 32px;
 }
 
@@ -132,7 +142,9 @@ body {
 
 .technical__buttons_item:hover {
   cursor: pointer;
+
   color: #f5f6f7;
+
   opacity: 1;
   border-bottom: 1px solid #eee;
 }
@@ -140,6 +152,7 @@ body {
 .technical__list_slider {
   display: flex;
   flex-direction: column;
+
   width: 100%;
 }
 
@@ -171,19 +184,23 @@ body {
 
 #point1:checked ~ .technical__buttons_list .technical__buttons_item_1 {
   color: #f5f6f7;
+
   opacity: 1;
   border-bottom: 1px solid #eee;
 }
 
 #point2:checked ~ .technical__buttons_list .technical__buttons_item_2 {
   color: #f5f6f7;
+
   opacity: 1;
   border-bottom: 1px solid #eee;
 }
 
 .technical__item {
   display: flex;
+
   padding: 12px 0;
+
   border-bottom: 1px solid rgb(207 211 214 / 10%);
 }
 

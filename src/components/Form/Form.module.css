@@ -9,13 +9,16 @@
 
 .form__label {
   margin-bottom: 20px;
+
   font-weight: 400;
   color: #1b191c;
 }
 
 .form__input_wrapper {
   position: relative;
+
   display: flex;
+
   max-width: 620px;
 }
 
@@ -36,6 +39,7 @@
 
 .form__input_error {
   padding-right: 40px;
+
   border: 0.5px solid #c6a827;
 }
 
@@ -68,6 +72,7 @@
 
 .form__button:hover {
   cursor: pointer;
+
   box-shadow: 5px 5px 10px;
 }
 
@@ -76,7 +81,7 @@
   bottom: -40px;
 
   overflow: hidden;
-  display: -webkit-box;
+  display: box;
 
   width: calc(100% - 96px);
   height: 32px;

@@ -1,7 +1,9 @@
 .player {
   position: relative;
+
   max-width: 620px;
   padding: 20px;
+
   background-color: #cfd3d6;
 }
 
