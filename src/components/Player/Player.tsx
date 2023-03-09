@@ -13,7 +13,7 @@ const Player = ({ track }) => {
   const audio = useRef();
   const progress = useRef();
 
-  const onLoadedMetadata = () => {
+  const onLoadedMetadata = (): void => {
     const seconds = audio.current.duration;
     setDuration(seconds);
     progress.current.max = seconds;

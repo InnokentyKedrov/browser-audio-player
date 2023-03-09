@@ -1,8 +1,15 @@
+import React from 'react';
 import styles from './LinkArray.module.css';
 
-const LinkArray = ({ linkArray, setTrack, setIsListFocus }) => {
-  const onClick = (e) => {
-    setTrack(e.target.textContent);
+interface PropsLinkArrayType {
+  linkArray: string[];
+  setTrack: React.Dispatch<React.SetStateAction<string | null>>;
+  setIsListFocus: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LinkArray = ({ linkArray, setTrack, setIsListFocus }: PropsLinkArrayType) => {
+  const onClick = (event: React.MouseEvent<HTMLLIElement>): void => {
+    setTrack(event.currentTarget.textContent);
   };
 
   return (

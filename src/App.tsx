@@ -1,13 +1,14 @@
+import React from 'react';
 import { useState } from 'react';
 import style from './App.module.css';
 import Form from './components/Form/Form';
 import Player from './components/Player/Player';
 
 function App() {
-  const [track, setTrack] = useState();
+  const [track, setTrack] = useState<string | null>(null);
 
   const back = () => {
-    setTrack();
+    setTrack('');
   };
 
   return (
