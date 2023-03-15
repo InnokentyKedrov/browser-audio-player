@@ -54,6 +54,8 @@
   background-repeat: no-repeat;
   background-position: center;
   border: none;
+
+  transition: background-color 1s ease-in-out;
 }
 
 .form__button_error::before {
@@ -73,7 +75,7 @@
 .form__button:hover {
   cursor: pointer;
 
-  box-shadow: 5px 5px 10px;
+  background-color: red;
 }
 
 .form__error {
@@ -81,19 +83,14 @@
   bottom: -40px;
 
   overflow: hidden;
-  display: box;
 
   width: calc(100% - 96px);
   height: 32px;
 
   font-size: 12px;
-  font-weight: 300;
   line-height: 133%;
   color: #c6a827;
   letter-spacing: -0.3px;
-
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 @media (max-width: 1080px) {
@@ -118,10 +115,15 @@
     width: calc(100% - 64px);
     height: 64px;
     padding: 16px;
+    padding-right: 40px;
   }
 
   .form__button {
     width: 64px;
     height: 64px;
+  }
+
+  .form__error {
+    width: calc(100% - 64px);
   }
 }

@@ -31,7 +31,7 @@
 /* played progress length */
 
 .progress__range::before {
-  content: '';
+  content: "";
 
   position: absolute;
   top: 0;

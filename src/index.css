@@ -255,6 +255,10 @@ body {
 }
 
 @media (max-width: 650px) {
+  .main__technical_title {
+    margin-bottom: 0;
+  }
+
   .technical__list {
     display: grid;
     grid-template-columns: 1fr;
@@ -289,5 +293,9 @@ body {
 
   .main {
     padding: 40px 12px;
+  }
+
+  .main__image {
+    height: 110px;
   }
 }
