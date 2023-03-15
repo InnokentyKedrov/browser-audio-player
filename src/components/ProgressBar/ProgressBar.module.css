@@ -11,6 +11,7 @@
   margin-bottom: 45px;
 
   background-color: #adacad;
+  outline: none;
 
   appearance: none;
 }
@@ -28,6 +29,7 @@
 }
 
 /* played progress length */
+
 .progress__range::before {
   content: '';
 
@@ -48,6 +50,7 @@
 }
 
 /* slider thumb */
+
 .progress__range::-webkit-slider-thumb {
   cursor: pointer;
 
@@ -115,6 +118,7 @@
 }
 
 /* slider thumb */
+
 .volume::-webkit-slider-thumb {
   cursor: pointer;
 

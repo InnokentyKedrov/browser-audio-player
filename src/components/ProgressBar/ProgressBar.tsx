@@ -1,12 +1,23 @@
+import React from 'react';
 import { useEffect } from 'react';
 import style from './ProgressBar.module.css';
 
-const ProgressBar = ({ progress, audio, timeProgress, volume, setVolume }) => {
-  const handleProgressChange = () => {
-    audio.current.currentTime = progress.current.value;
+type PropsType = {
+  audio: React.RefObject<HTMLAudioElement>;
+  progress: React.RefObject<HTMLInputElement>;
+  timeProgress: number;
+  volume: number;
+  setVolume: (args: number) => void;
+};
+
+const ProgressBar = ({ progress, audio, timeProgress, volume, setVolume }: PropsType) => {
+  const handleProgressChange = (): void => {
+    if (audio.current) {
+      audio.current.currentTime = Number(progress.current?.value);
+    }
   };
 
-  const formatTime = (time) => {
+  const formatTime = (time: number): string => {
     if (time && !isNaN(time)) {
       const minutes = Math.floor(time / 60);
       const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
@@ -18,7 +29,7 @@ const ProgressBar = ({ progress, audio, timeProgress, volume, setVolume }) => {
   };
 
   useEffect(() => {
-    if (audio) {
+    if (audio.current) {
       audio.current.volume = volume / 100;
     }
   }, [volume, audio]);
@@ -42,7 +53,7 @@ const ProgressBar = ({ progress, audio, timeProgress, volume, setVolume }) => {
           min={0}
           max={100}
           value={volume}
-          onChange={(e) => setVolume(e.target.value)}
+          onChange={(e) => setVolume(Number(e.target.value))}
           style={{
             background: `linear-gradient(to right, #000 ${volume}%, #fff ${volume}%)`,
           }}

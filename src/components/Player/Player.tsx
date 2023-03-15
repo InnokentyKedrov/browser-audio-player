@@ -1,76 +1,84 @@
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Controls from '../Controls/Controls';
 import Loader from '../Loader/Loader';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import style from './Player.module.css';
 
-const Player = ({ track }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [timeProgress, setTimeProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(60);
-  const [isLoad, setIsLoad] = useState(true);
-  const audio = useRef();
-  const progress = useRef();
+const Player = ({ track }: { track: string }) => {
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [timeProgress, setTimeProgress] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [volume, setVolume] = useState<number>(60);
+  const [isLoad, setIsLoad] = useState<boolean>(true);
+  const audio = useRef<HTMLAudioElement>(null);
+  const progress = useRef<HTMLInputElement>(null);
 
   const onLoadedMetadata = (): void => {
-    const seconds = audio.current.duration;
-    setDuration(seconds);
-    progress.current.max = seconds;
+    const seconds = audio.current?.duration;
+    if (seconds) {
+      setDuration(seconds);
+      if (progress.current) {
+        progress.current.max = seconds.toString();
+      }
+    }
   };
 
   useEffect(() => {
     const myAudio = audio.current;
-    //   ' Use Keyboard:  Space to Play/Pause | Enter to Stop | Arrows to Change Time and Volume'
+    if (myAudio) {
+      const listener = (e: KeyboardEvent) => {
+        e.preventDefault();
 
-    const listener = (e) => {
-      e.preventDefault();
-
-      switch (e.code) {
-        case 'Space':
-          setIsPlaying(!isPlaying);
-          break;
-        case 'Enter':
-          myAudio.load();
-          setIsPlaying(false);
-          break;
-        case 'ArrowRight':
-          myAudio.currentTime += 5;
-          break;
-        case 'ArrowLeft':
-          myAudio.currentTime -= 5;
-          break;
-        case 'ArrowUp':
-          if (volume < 100) setVolume(volume + 5);
-          break;
-        case 'ArrowDown':
-          if (volume > 0) setVolume(volume - 5);
-          break;
-        default:
-          return;
-      }
-    };
-    document.addEventListener('keydown', listener);
-    return function cleanup() {
-      document.removeEventListener('keydown', listener);
-    };
+        //   ' Use Keyboard:  Space to Play/Pause | Enter to Stop | Arrows to Change Time and Volume'
+        switch (e.code) {
+          case 'Space':
+            setIsPlaying(!isPlaying);
+            break;
+          case 'Enter':
+            myAudio.load();
+            setIsPlaying(false);
+            break;
+          case 'ArrowRight':
+            myAudio.currentTime += 5;
+            break;
+          case 'ArrowLeft':
+            myAudio.currentTime -= 5;
+            break;
+          case 'ArrowUp':
+            if (volume < 100) setVolume(volume + 5);
+            break;
+          case 'ArrowDown':
+            if (volume > 0) setVolume(volume - 5);
+            break;
+          default:
+            return;
+        }
+      };
+      document.addEventListener('keydown', listener);
+      return function cleanup() {
+        document.removeEventListener('keydown', listener);
+      };
+    }
   }, [isPlaying, volume]);
 
   useEffect(() => {
     const myAudio = audio.current;
 
-    myAudio.addEventListener('canplay', () => {
-      setIsLoad(false);
-    });
+    if (myAudio) {
+      myAudio.addEventListener('canplay', () => {
+        setIsLoad(false);
+      });
 
-    myAudio.addEventListener('waiting', () => {
-      setIsLoad(true);
-    });
+      myAudio.addEventListener('waiting', () => {
+        setIsLoad(true);
+      });
 
-    myAudio.addEventListener('ended', () => {
-      myAudio.load();
-      setIsPlaying(false);
-    });
+      myAudio.addEventListener('ended', () => {
+        myAudio.load();
+        setIsPlaying(false);
+      });
+    }
   }, []);
 
   return (
