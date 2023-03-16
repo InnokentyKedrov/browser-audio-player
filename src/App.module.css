@@ -8,9 +8,10 @@
 }
 
 .back {
+  width: fit-content;
   margin-bottom: 20px;
 
-  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-family: "Space Grotesk", Arial, sans-serif;
   font-size: 24px;
   line-height: 133%;
   color: #1b191c;
@@ -19,13 +20,13 @@
 
   border: none;
 
-  transition: color 0.4s;
+  transition: color 1s;
 }
 
 .back:hover {
   cursor: pointer;
 
-  box-shadow: 5px 5px 10px;
+  color: red;
 }
 
 @media (max-width: 1080px) {
@@ -38,5 +39,9 @@
   .player__wrapper {
     margin-bottom: 40px;
     padding: 0;
+  }
+
+  .main__image {
+    height: 110px;
   }
 }

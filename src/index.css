@@ -1,5 +1,5 @@
 body {
-  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-family: "Space Grotesk", Arial, sans-serif;
   font-size: 24px;
   font-weight: 300;
   font-style: normal;
@@ -25,9 +25,9 @@ body {
 .header {
   display: grid;
   grid-template-areas:
-    'title root'
-    'description root'
-    'link root';
+    "title root"
+    "description root"
+    "link root";
   grid-template-columns: 37% 1fr;
 
   padding: 40px;
@@ -101,7 +101,7 @@ body {
 .main__image {
   height: 248px;
 
-  background-image: url('./assets/illustration.png');
+  background-image: url("./assets/illustration.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -255,6 +255,10 @@ body {
 }
 
 @media (max-width: 650px) {
+  .main__technical_title {
+    margin-bottom: 0;
+  }
+
   .technical__list {
     display: grid;
     grid-template-columns: 1fr;
@@ -289,5 +293,9 @@ body {
 
   .main {
     padding: 40px 12px;
+  }
+
+  .main__image {
+    height: 110px;
   }
 }

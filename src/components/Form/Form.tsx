@@ -1,55 +1,69 @@
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import LinkArray from '../LinkArray/LinkArray';
 import style from './Form.module.css';
 
-const Form = ({ setTrack }) => {
-  const [error, setError] = useState();
+interface SetTrackType {
+  setTrack: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+const Form = ({ setTrack }: SetTrackType) => {
+  const [error, setError] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [isInputFocus, setIsInputFocus] = useState(false);
   const [isListFocus, setIsListFocus] = useState(false);
-  const [linkArray, setLinkArray] = useState(JSON.parse(localStorage.getItem('linkArray')) || []);
-  const inputRef = useRef(null);
-  const fakeAudio = useRef();
+  const [linkArray, setLinkArray] = useState(
+    JSON.parse(localStorage.getItem('linkArray') || '') || [],
+  );
+  const inputRef = useRef<HTMLInputElement>(null);
+  const fakeAudio = useRef<HTMLAudioElement>(null);
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    checkUrl(inputRef.current.value);
-  };
-
-  const onKeyDown = (event) => {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-      event.target.blur();
+    if (inputRef.current) {
+      checkUrl(inputRef.current.value);
     }
   };
 
-  const checkUrl = (url) => {
-    let error;
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      event.currentTarget.blur();
+    }
+  };
+
+  const checkUrl = (url: string) => {
+    let error: string;
 
     const check = () => {
-      fakeAudio.current.src = url;
-      fakeAudio.current.addEventListener('error', (e) => {
-        switch (e.target.error.code) {
-          case e.target.error.MEDIA_ERR_ABORTED:
-            error = 'You aborted the media playback.';
-            break;
-          case e.target.error.MEDIA_ERR_NETWORK:
-            error = 'A network error caused the media download to fail.';
-            break;
-          case e.target.error.MEDIA_ERR_DECODE:
-            error =
-              'The media playback was aborted due to a corruption problem or because the media used features your browser did not support.';
-            break;
-          case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-            error =
-              'The media could not be loaded, either because the server or network failed or because the format is not supported.';
-            break;
-          default:
-            error = 'An unknown media error occurred.';
-            break;
-        }
-        setError(error);
-      });
+      if (fakeAudio.current) {
+        fakeAudio.current.src = url;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        fakeAudio.current.addEventListener('error', (e: any) => {
+          if (e.target as HTMLAudioElement) {
+            switch (e.target.error.code) {
+              case e.target.error.MEDIA_ERR_ABORTED:
+                error = 'You aborted the media playback.';
+                break;
+              case e.target.error.MEDIA_ERR_NETWORK:
+                error = 'A network error caused the media download to fail.';
+                break;
+              case e.target.error.MEDIA_ERR_DECODE:
+                error =
+                  'The media playback was aborted due to a corruption problem or because the media used features your browser did not support.';
+                break;
+              case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                error =
+                  'The media could not be loaded, either because the server or network failed or because the format is not supported.';
+                break;
+              default:
+                error = 'An unknown media error occurred.';
+                break;
+            }
+            setError(error);
+          }
+        });
+      }
     };
 
     if (!url) setError('This field is required.');
@@ -62,14 +76,15 @@ const Form = ({ setTrack }) => {
     else {
       check();
     }
-
-    fakeAudio.current.addEventListener('loadedmetadata', () => {
-      if (!linkArray.includes(url)) {
-        setLinkArray([...linkArray, url]);
-        localStorage.setItem('linkArray', JSON.stringify([...linkArray, url]));
-      }
-      setTrack(url);
-    });
+    if (fakeAudio.current) {
+      fakeAudio.current.addEventListener('loadedmetadata', () => {
+        if (!linkArray.includes(url)) {
+          setLinkArray([...linkArray, url]);
+          localStorage.setItem('linkArray', JSON.stringify([...linkArray, url]));
+        }
+        setTrack(url);
+      });
+    }
   };
 
   useEffect(() => {
