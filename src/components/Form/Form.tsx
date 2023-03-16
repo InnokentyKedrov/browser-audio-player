@@ -13,7 +13,7 @@ const Form = ({ setTrack }: SetTrackType) => {
   const [isInputFocus, setIsInputFocus] = useState(false);
   const [isListFocus, setIsListFocus] = useState(false);
   const [linkArray, setLinkArray] = useState(
-    JSON.parse(localStorage.getItem('linkArray') || '') || [],
+    JSON.parse(localStorage.getItem('linkArray') || '""') || [],
   );
   const inputRef = useRef<HTMLInputElement>(null);
   const fakeAudio = useRef<HTMLAudioElement>(null);
